@@ -7,7 +7,7 @@ const navLinks = [
   { to: '/projects', label: 'Projects' },
   { to: '/uses', label: 'Uses' },
   { to: '/bookmarks', label: 'Bookmarks' },
-  { to: '/me', label: 'About' },
+
 ]
 
 export default function Header() {

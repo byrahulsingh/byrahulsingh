@@ -41,17 +41,9 @@ const sections = [
     meta: 'Setup',
     icon: Monitor,
     accent: 'cyan',
-    className: 'md:col-span-1 md:row-span-1',
+    className: 'md:col-span-3 md:row-span-1',
   },
-  {
-    href: '/me',
-    label: 'About',
-    description: 'Who I am — the longer version of my journey.',
-    meta: 'Me',
-    icon: User,
-    accent: 'orange',
-    className: 'md:col-span-2 md:row-span-1',
-  },
+
 ]
 
 const ACCENT_HOVER_MAP: Record<string, string> = {

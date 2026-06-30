@@ -24,7 +24,7 @@ const NAV_ITEMS = [
   { to: '/cookbooks', icon: BookOpen, label: 'Cookbooks', color: 'text-amber-500  dark:text-amber-400'    },
   { to: '/projects',  icon: Layers,   label: 'Projects',  color: 'text-emerald-500 dark:text-emerald-400' },
   { to: '/uses',      icon: Monitor,  label: 'Uses',      color: 'text-cyan-500   dark:text-cyan-400'     },
-  { to: '/me',        icon: User,     label: 'About',     color: 'text-orange-500 dark:text-orange-400'   },
+
 ] as const
 
 const XLogo = (props: React.SVGProps<SVGSVGElement>) => (
