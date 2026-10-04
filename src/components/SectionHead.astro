@@ -1,0 +1,18 @@
+---
+interface Props {
+	num: number;
+	title: string;
+	note?: string;
+}
+
+const { num, title, note } = Astro.props;
+---
+
+<div class="mb-8.5 flex flex-wrap items-baseline gap-4">
+	<span
+		class="grid size-8.5 -rotate-6 place-items-center rounded-full border-2 border-red font-hand text-[15px] font-bold text-red"
+		aria-hidden="true">{num}</span
+	>
+	<h2 class="flex-[1_1_220px] text-[clamp(30px,4.2vw,44px)] font-extrabold md:flex-none">{title}</h2>
+	{note && <span class="label">{note}</span>}
+</div>

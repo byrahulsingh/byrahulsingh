@@ -1,0 +1,67 @@
+---
+// Placeholder hand-drawn portrait until the real photo goes back in (src/assets/me/rahul.jpg).
+---
+
+<svg viewBox="0 0 230 280" role="img" aria-label="Pencil sketch of Rahul" class="block size-full bg-card text-ink">
+	<defs>
+		<pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+			<line x1="0" y1="0" x2="0" y2="5" stroke="currentColor" stroke-width="1.4" opacity=".55"></line>
+		</pattern>
+		<pattern id="hatch-light" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-40)">
+			<line x1="0" y1="0" x2="0" y2="7" stroke="currentColor" stroke-width="1" opacity=".25"></line>
+		</pattern>
+	</defs>
+
+	<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(-28 -14) scale(1.25)">
+		<!-- blazer -->
+		<path d="M28 282 C32 246 58 226 98 218 L115 240 L132 218 C172 226 198 246 202 282" fill="url(#hatch-light)" stroke-width="2.6"></path>
+		<path d="M30 280 C35 250 60 230 96 221" stroke-width="1.2" opacity=".5"></path>
+		<!-- lapels -->
+		<path d="M98 218 L86 252 L104 262 L112 244" stroke-width="2.2"></path>
+		<path d="M132 218 L144 252 L126 262 L118 244" stroke-width="2.2"></path>
+		<!-- turtleneck -->
+		<path d="M97 194 L96 222 C104 230 126 230 134 222 L133 194" fill="currentColor" stroke-width="2.4"></path>
+		<path d="M104 222 L115 262 L126 222" fill="currentColor" stroke-width="1.6"></path>
+
+		<!-- ears -->
+		<path d="M79 112 C68 108 66 128 76 138" stroke-width="2.4"></path>
+		<path d="M151 112 C162 108 164 128 154 138" stroke-width="2.4"></path>
+
+		<!-- face -->
+		<path d="M79 104 C78 132 82 158 92 178 C100 192 108 198 115 198 C122 198 130 192 138 178 C148 158 152 132 151 104" stroke-width="2.6"></path>
+
+		<!-- beard -->
+		<path
+			d="M80 132 C82 160 92 186 106 198 C110 202 120 202 124 198 C138 186 148 160 150 132 C146 150 138 160 130 162 C124 152 106 152 100 162 C92 160 84 150 80 132 Z"
+			fill="url(#hatch)"
+			stroke-width="1.8"
+		></path>
+		<!-- moustache + mouth -->
+		<path d="M101 158 C106 150 113 151 115 154 C117 151 124 150 129 158" stroke-width="2.6"></path>
+		<path d="M107 166 C112 169 118 169 123 166" stroke-width="2"></path>
+
+		<!-- nose -->
+		<path d="M114 116 C112 128 108 136 110 140 C113 143 118 143 121 140" stroke-width="2"></path>
+
+		<!-- brows + eyes -->
+		<path d="M90 106 C96 101 104 101 109 104" stroke-width="3.2"></path>
+		<path d="M121 104 C126 101 134 101 140 106" stroke-width="3.2"></path>
+		<path d="M93 117 C97 113 104 113 107 117 C103 120 97 120 93 117 Z" stroke-width="1.8"></path>
+		<path d="M123 117 C126 113 133 113 137 117 C133 120 127 120 123 117 Z" stroke-width="1.8"></path>
+		<circle cx="100" cy="116.5" r="2.4" fill="currentColor" stroke="none"></circle>
+		<circle cx="130" cy="116.5" r="2.4" fill="currentColor" stroke="none"></circle>
+
+		<!-- hair: short and spiky, darker on top, faded sides -->
+		<path
+			d="M77 108 C72 84 76 62 90 50 L94 40 L102 47 L108 34 L116 44 L124 33 L130 44 L140 38 L141 50 C154 60 158 84 153 108 C150 92 146 80 140 74 C124 70 104 70 90 76 C84 84 80 96 77 108 Z"
+			fill="url(#hatch)"
+			stroke-width="2.4"
+		></path>
+		<path d="M90 76 C104 66 126 66 140 74" stroke-width="1.4" opacity=".6"></path>
+	</g>
+
+	<!-- pencil note in the top corner -->
+	<text x="14" y="24" fill="var(--muted)" font-family="var(--font-shantell), ui-rounded, sans-serif" font-size="11">
+		sketch v0.1
+	</text>
+</svg>

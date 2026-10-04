@@ -1,58 +1,29 @@
-<div align="center">
-  <h1>Hi there, I'm Rahul Singh 👋</h1>
-  <p><strong>Principal Engineer @ <a href="https://livlong.com/">Livlong</a></strong></p>
-  <p>
-    Building high-performance, scalable products from 0 to 1.<br/>
-    Adept at working closely with co-founders and stakeholders to build products users love.
-  </p>
-</div>
+<a href="https://byrahulsingh.com">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/readme/banner-dark.png">
+    <img src=".github/readme/banner-light.png" width="100%" alt="Rahul Singh, Principal Engineer, Product builder, Mumbai. I build products and ship them to market. AI is one of my tools. Shipping is the job.">
+  </picture>
+</a>
 
----
-
-### 🚀 About Me
-- 🔭 I’m currently building highly interactive web apps and AI-driven features.
-- 🌱 I’m passionate about building end-to-end solutions—from scalable systems architecture to intuitive UI/UX.
-
-### 💻 Tech Stack
-
-**Frontend**  
-<p>
-  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
-  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
-  <img src="https://img.shields.io/badge/shadcn%2Fui-000000?style=for-the-badge&logo=shadcnui&logoColor=white" alt="shadcn/ui" />
-  <img src="https://img.shields.io/badge/TanStack-FF4154?style=for-the-badge&logo=react&logoColor=white" alt="TanStack" />
+<p align="left">
+  <a href="https://byrahulsingh.com"><img src=".github/readme/btn-site.png" height="44" alt="byrahulsingh.com"></a>
+  <a href="https://www.linkedin.com/in/byrahulsingh/"><img src=".github/readme/btn-li.png" height="44" alt="LinkedIn"></a>
+  <a href="https://x.com/byrahulsingh"><img src=".github/readme/btn-x.png" height="44" alt="X @byrahulsingh"></a>
+  <a href="mailto:hello@byrahulsingh.com"><img src=".github/readme/btn-mail.png" height="44" alt="hello@byrahulsingh.com"></a>
+  <a href="https://byrahulsingh.com/Rahul_Singh_Resume.pdf"><img src=".github/readme/btn-cv.png" height="44" alt="Resume (PDF)"></a>
 </p>
 
-**Backend**  
-<p>
-  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
-  <img src="https://img.shields.io/badge/Bun-000000?style=for-the-badge&logo=bun&logoColor=white" alt="Bun" />
-  <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express" />
-  <img src="https://img.shields.io/badge/Hono-E36002?style=for-the-badge&logo=hono&logoColor=white" alt="Hono" />
-  <img src="https://img.shields.io/badge/Drizzle_ORM-C5F74F?style=for-the-badge&logo=drizzle&logoColor=black" alt="Drizzle ORM" />
-</p>
+### Hey, I'm Rahul 👋
 
-**Database & Cloud**  
-<p>
-  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
-  <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white" alt="AWS" />
-</p>
+Principal Engineer at [Livlong](https://livlong.com) in Mumbai. For 11+ years I've been taking products from first commit to real users. Today I lead 15+ engineers, and I still write production code most days.
 
-**AI & Scripting**  
-<p>
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
-  <img src="https://img.shields.io/badge/LangChain-121212?style=for-the-badge&logo=langchain&logoColor=white" alt="LangChain" />
-</p>
+**Recently shipped**
 
-### 🛠️ Editor & Tools
-**Primary IDE:** VS Code / Cursor / Antigravity (Zsh on MacBook Pro)  
-**Tools:** Chrome, Notion, Claude, Excalidraw  
+- **livlong.com rebuild:** moved off WordPress to Next.js. Lighthouse went from 65–70 to 98–99, SEO to 100.
+- **Lab-test marketplace:** built and launched end to end.
+- **Internal servicing portals:** the tools Livlong's servicing teams work in.
+- **AI chatbot with voice calling:** running in production.
+- **AI agents across CRM, email and WhatsApp:** running in production.
+- **Live chess classes at nurtr:** the company's first product, built 0 → 1, later moved from monolith to microservices.
 
-### 📫 Let's Connect
-- **GitHub:** [@byrahulsingh](https://github.com/byrahulsingh)
-- **LinkedIn:** [in/byrahulsingh](https://linkedin.com/in/byrahulsingh)
-- **Twitter / X:** [@byrahulsingh](https://x.com/byrahulsingh)
-- **Email:** [hello@byrahulsingh.com](mailto:hello@byrahulsingh.com)
-
-
+**Stack:** Next.js · React · TypeScript · Node.js · Bun · Hono · Postgres · Drizzle · Python · LangChain · AWS

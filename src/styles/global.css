@@ -1,0 +1,373 @@
+@import 'tailwindcss';
+
+/* ── Notebook-paper palette (light / dark) ─────────────────────────── */
+:root {
+	--paper: #fbf9f4;
+	--rule: #e9e4d8;
+	--margin: #f2b8b0;
+	--ink: #1c1a17;
+	--soft: #57524a;
+	--muted: #7d776b;
+	--blue: #3557d6;
+	--red: #d9412b;
+	--green: #12805c;
+	--amber: #b8650a;
+	--plum: #8b3fb5;
+	--hl: rgba(255, 205, 70, 0.6);
+	--card: #fffdf8;
+	--chip: #f3efe5;
+	--shadow: rgba(28, 26, 23, 0.1);
+	--col: 1040px;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--paper: #1d2422;
+		--rule: #28312e;
+		--margin: #6b3a35;
+		--ink: #f2efe6;
+		--soft: #c9c4b8;
+		--muted: #949e98;
+		--blue: #8aa2ff;
+		--red: #ff8a75;
+		--green: #5fd3a8;
+		--amber: #ffb463;
+		--plum: #d79cf2;
+		--hl: rgba(255, 205, 70, 0.26);
+		--card: #242d2a;
+		--chip: #2c3632;
+		--shadow: rgba(0, 0, 0, 0.35);
+	}
+}
+
+/* Expose the palette + fonts as Tailwind utilities: text-ink, bg-card, font-hand, … */
+@theme inline {
+	--color-paper: var(--paper);
+	--color-rule: var(--rule);
+	--color-margin: var(--margin);
+	--color-ink: var(--ink);
+	--color-soft: var(--soft);
+	--color-muted: var(--muted);
+	--color-blue: var(--blue);
+	--color-red: var(--red);
+	--color-green: var(--green);
+	--color-amber: var(--amber);
+	--color-plum: var(--plum);
+	--color-hl: var(--hl);
+	--color-card: var(--card);
+	--color-chip: var(--chip);
+	--color-shadow: var(--shadow);
+
+	--font-hand: var(--font-shantell), ui-rounded, system-ui, sans-serif;
+	--font-sans: var(--font-shantell), ui-rounded, system-ui, sans-serif;
+	--font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+	--container-col: var(--col);
+}
+
+/* ── Base ──────────────────────────────────────────────────────────── */
+@layer base {
+	html {
+		scroll-behavior: smooth;
+		overflow-x: clip;
+	}
+	body {
+		@apply bg-paper text-ink font-sans text-[17px] leading-[1.7] overflow-x-clip;
+		background-image: linear-gradient(var(--rule) 1px, transparent 1px);
+		background-size: 100% 34px;
+	}
+	/* notebook margin line */
+	body::before {
+		content: '';
+		position: fixed;
+		inset-block: 0;
+		left: max(24px, calc(50% - var(--col) / 2 - 56px));
+		border-left: 2px solid var(--margin);
+		opacity: 0.8;
+		pointer-events: none;
+		@media (max-width: 900px) {
+			display: none;
+		}
+	}
+	h1,
+	h2,
+	h3 {
+		@apply font-hand leading-[1.08] tracking-[-0.01em];
+	}
+	::selection {
+		background: var(--hl);
+	}
+	:focus-visible {
+		outline: 3px solid var(--blue);
+		outline-offset: 3px;
+	}
+}
+
+/* ── Hand-drawn primitives ─────────────────────────────────────────── */
+@utility label {
+	@apply font-mono text-[12.5px] leading-[1.4] font-medium tracking-[0.1em] uppercase text-muted;
+}
+
+@utility sketch-btn {
+	@apply inline-block font-hand text-base font-bold no-underline px-4 py-2.5 border-2 border-ink bg-card text-ink;
+	border-radius: 14px 20px 15px 22px / 20px 14px 22px 15px;
+	box-shadow: 3px 3px 0 var(--ink);
+	transition:
+		transform 0.15s,
+		box-shadow 0.15s;
+	&:hover {
+		transform: translate(-2px, -2px);
+		box-shadow: 5px 5px 0 var(--ink);
+	}
+}
+
+@utility chip {
+	@apply inline-block font-mono text-[12.5px] font-medium bg-chip border-[1.5px] border-ink rounded-full px-[11px] py-[3px];
+}
+
+/* wobbly card corners */
+@utility sketch-radius {
+	border-radius: 6px 14px 8px 16px / 14px 6px 16px 8px;
+}
+
+/* yellow marker highlight that sweeps in when .on is added */
+@utility hl {
+	padding: 0 0.08em;
+	background: linear-gradient(100deg, transparent 1%, var(--hl) 3%, var(--hl) 97%, transparent 99%) no-repeat 0 88% / 0% 42%;
+	transition: background-size 1.2s cubic-bezier(0.6, 0.1, 0.2, 1);
+	&:is(.on, .on *) {
+		background-size: 100% 42%;
+	}
+}
+
+/* red wavy underline */
+@utility squiggle {
+	padding-bottom: 5px;
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8'%3E%3Cpath d='M1 5 Q 7 1, 13 5 T 25 5 T 37 5 T 49 5 T 61 5 T 73 5 T 85 5 T 97 5 T 109 5 T 120 5' stroke='%23d9412b' stroke-width='1.8' fill='none'/%3E%3C/svg%3E")
+		repeat-x 0 100% / 60px 6px;
+}
+
+/* dashed hand-drawn arrow linking pipeline steps */
+@utility pipe-link {
+	&::after {
+		content: '';
+		position: absolute;
+		top: 26px;
+		left: 62px;
+		right: 6px;
+		height: 12px;
+		background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 6 C 40 2, 80 10, 120 5 S 180 7, 196 6' stroke='%238a8478' stroke-width='2.2' fill='none' stroke-dasharray='6 6' stroke-linecap='round'/%3E%3C/svg%3E")
+			no-repeat center / 100% 12px;
+	}
+}
+
+@layer components {
+	/* hand-drawn circle around a word; stroke draws in on .on */
+	.circled {
+		position: relative;
+		display: inline-block;
+		white-space: nowrap;
+	}
+	.circled svg {
+		position: absolute;
+		left: -8%;
+		top: -14%;
+		width: 116%;
+		height: 132%;
+		overflow: visible;
+		pointer-events: none;
+	}
+	.circled path {
+		fill: none;
+		stroke: var(--red);
+		stroke-width: 3.2;
+		stroke-linecap: round;
+		stroke-dasharray: 900;
+		stroke-dashoffset: 900;
+		transition: stroke-dashoffset 1.3s 0.5s ease-out;
+	}
+	.circled.on path {
+		stroke-dashoffset: 0;
+	}
+
+	/* rubber stamp on shipping cards; thunks in on .on */
+	.stamp {
+		position: absolute;
+		top: 16px;
+		right: 14px;
+		font: 800 12px/1 var(--font-mono);
+		letter-spacing: 0.12em;
+		color: var(--c, var(--red));
+		border: 2.5px solid var(--c, var(--red));
+		border-radius: 6px;
+		padding: 6px 7px 5px;
+		transform: rotate(11deg);
+		opacity: 0;
+		transition:
+			opacity 0.3s,
+			transform 0.5s cubic-bezier(0.3, 1.6, 0.5, 1);
+	}
+	.on > .stamp {
+		opacity: 0.85;
+		transform: rotate(-9deg);
+	}
+
+	/* photo taped to the page */
+	.taped::before,
+	.taped::after {
+		content: '';
+		position: absolute;
+		z-index: 1;
+		width: 96px;
+		height: 28px;
+		background: rgba(255, 212, 90, 0.78);
+		top: -14px;
+	}
+	.taped::before {
+		left: -22px;
+		transform: rotate(-26deg);
+	}
+	.taped::after {
+		right: -22px;
+		transform: rotate(22deg);
+	}
+
+	/* index card with a red header rule */
+	.index-card {
+		background-image:
+			linear-gradient(var(--card), var(--card)),
+			linear-gradient(transparent 27px, var(--margin) 27px, var(--margin) 29px, transparent 29px);
+		background-clip: padding-box;
+	}
+
+	/* margin notes sit in the left gutter, clear of the red margin line, on very wide screens.
+	   The line is 80px left of the content, so a note ending at -100px leaves a 20px gap;
+	   below 1560px the gutter is too narrow and the note drops under the heading instead. */
+	.mnote {
+		@apply font-hand text-[15px] leading-[1.35] font-medium text-red;
+		margin: -18px 0 26px;
+		@media (min-width: 1560px) {
+			position: absolute;
+			left: -250px;
+			top: 6px;
+			width: 150px;
+			margin: 0;
+			text-align: right;
+		}
+	}
+
+	/* scroll-in entrance */
+	.reveal {
+		opacity: 0;
+		transform: translateY(14px);
+		transition:
+			opacity 0.6s ease,
+			transform 0.6s ease;
+	}
+	.reveal.on,
+	.no-js .reveal {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+/* ── Mascot ────────────────────────────────────────────────────────── */
+@keyframes bob {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-6px);
+	}
+}
+@keyframes blink {
+	0%,
+	92%,
+	100% {
+		transform: scaleY(1);
+	}
+	95% {
+		transform: scaleY(0.1);
+	}
+}
+@keyframes steam {
+	0% {
+		transform: translateY(4px);
+		opacity: 0;
+	}
+	40% {
+		opacity: 0.9;
+	}
+	100% {
+		transform: translateY(-14px);
+		opacity: 0;
+	}
+}
+@keyframes wave {
+	0%,
+	60%,
+	100% {
+		transform: rotate(0);
+	}
+	70% {
+		transform: rotate(-22deg);
+	}
+	80% {
+		transform: rotate(10deg);
+	}
+	90% {
+		transform: rotate(-14deg);
+	}
+}
+
+@layer components {
+	.m-body {
+		animation: bob 3.2s ease-in-out infinite;
+	}
+	.m-eye {
+		animation: blink 4.6s infinite;
+		transform-box: fill-box;
+		transform-origin: center;
+	}
+	.m-steam path {
+		animation: steam 2.6s ease-in infinite;
+	}
+	.m-steam path:nth-child(2) {
+		animation-delay: 0.9s;
+	}
+	.m-steam path:nth-child(3) {
+		animation-delay: 1.7s;
+	}
+	.m-arm {
+		transform-box: fill-box;
+		transform-origin: 10% 90%;
+		animation: wave 3.6s ease-in-out infinite;
+	}
+}
+
+/* ── Reduced motion: everything lands in its final state ───────────── */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation: none !important;
+		transition: none !important;
+	}
+	html {
+		scroll-behavior: auto;
+	}
+	.reveal {
+		opacity: 1;
+		transform: none;
+	}
+	.circled path {
+		stroke-dashoffset: 0;
+	}
+	.hl {
+		background-size: 100% 42%;
+	}
+	.stamp {
+		opacity: 0.85;
+	}
+}

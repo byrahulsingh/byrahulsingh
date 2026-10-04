@@ -1,0 +1,33 @@
+---
+import { NAV } from '../consts';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const item = 'whitespace-nowrap rounded-xl px-1.75 py-1.5 no-underline max-[380px]:px-1 sm:px-2.75';
+---
+
+<nav
+	aria-label="Site"
+	class="fixed bottom-4.5 left-1/2 z-10 flex max-w-[calc(100vw-24px)] -translate-x-1/2 gap-1 max-[380px]:gap-0.5 max-[380px]:text-xs rounded-[20px] border-2 border-ink bg-card p-1.25 font-hand text-[12.5px] font-bold shadow-[3px_3px_0_var(--ink)] sm:px-2.5 sm:py-1.75 sm:text-sm"
+>
+	{
+		NAV.map(({ href, label, live }) => {
+			if (!live) {
+				return (
+					<span class:list={[item, 'cursor-default text-muted opacity-60']} title="coming soon">
+						{label}
+					</span>
+				);
+			}
+			const current = path === href;
+			return (
+				<a
+					href={href}
+					aria-current={current ? 'page' : undefined}
+					class:list={[item, current ? 'bg-ink text-paper' : 'hover:bg-chip']}
+				>
+					{label}
+				</a>
+			);
+		})
+	}
+</nav>

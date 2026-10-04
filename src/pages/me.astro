@@ -1,0 +1,210 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Mascot from '../components/Mascot.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { EMAIL, RESUME, SOCIALS } from '../consts';
+import { chapters, numbers, pipeline, principles, ships, toolbox } from '../data/me';
+import photo from '../assets/me/rahul-cutout.png';
+
+const accent = (name: string) => `--c: var(--${name})`;
+const tilt = ['-rotate-[.6deg]', 'rotate-[.5deg]', '-rotate-[.3deg]'];
+---
+
+<Base
+	title="Rahul Singh · Principal Engineer"
+	description="I build products and ship them to market. 11+ years taking products from first commit to real users; today I lead 15+ engineers at Livlong and still write production code most days."
+>
+	<!-- HERO -->
+	<header class="mt-2 grid items-start gap-10 md:grid-cols-[minmax(0,1fr)_280px]">
+		<div>
+			<p class="label"><b class="font-medium text-blue">Rahul Singh</b> · Principal Engineer · Product builder · Mumbai</p>
+			<h1 class="mt-5.5 text-[clamp(44px,7.4vw,84px)] font-extrabold">
+				I build products and ship them to
+				<span class="circled" data-anim>
+					<span class="hl">market.</span>
+					<svg viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true">
+						<path d="M150 8 C 60 6, 8 30, 12 62 C 16 98, 120 114, 196 106 C 268 98, 296 70, 284 42 C 272 16, 200 6, 120 14"></path>
+					</svg>
+				</span>
+			</h1>
+			<p class="mt-7.5 max-w-140 font-hand text-[clamp(20px,2.3vw,24px)] leading-normal tracking-[-.005em]">
+				For 11+ years I've been taking products from first commit to <span class="squiggle">real users</span>. Today I lead 15+
+				engineers at Livlong, and I still write production code most days.
+			</p>
+			<div class="mt-4.5 flex items-start gap-2.5 font-hand text-[17px] leading-[1.3] font-medium text-red">
+				<svg viewBox="0 0 56 40" class="h-10 w-14 flex-none" aria-hidden="true">
+					<path d="M50 6 C 34 4, 14 12, 8 32 M8 32 l-2 -10 M8 32 l9 -5" stroke="currentColor" stroke-width="2.6" fill="none" stroke-linecap="round"></path>
+				</svg>
+				<span>AI is one of my tools.<br />Shipping is the job.</span>
+			</div>
+			<div class="mt-7.5 flex flex-wrap gap-2.5">
+				<a class="sketch-btn bg-ink! text-paper!" href={RESUME} download>Download resume ↓</a>
+				<a class="sketch-btn" href={`mailto:${EMAIL}`}>Say hello</a>
+				<a class="sketch-btn" href={SOCIALS.linkedin} rel="me noopener" target="_blank">LinkedIn</a>
+				<a class="sketch-btn" href={SOCIALS.x} rel="me noopener" target="_blank">X</a>
+				<a class="sketch-btn" href={SOCIALS.github} rel="me noopener" target="_blank">GitHub</a>
+			</div>
+		</div>
+
+		<div class="group relative mx-auto mt-14 w-57.5 md:mt-8.5">
+			<div class="taped relative h-70 w-57.5 rotate-[2.5deg] border-2 border-ink bg-chip shadow-[6px_8px_0_var(--shadow)]">
+				<Image
+					src={photo}
+					alt="Rahul Singh, smiling, in a black t-shirt"
+					widths={[230, 460]}
+					sizes="230px"
+					loading="eager"
+					fetchpriority="high"
+					class="size-full object-cover grayscale contrast-[1.05]"
+				/>
+			</div>
+			<p class="-mx-3 mt-3.5 -rotate-[1.5deg] text-center font-hand text-sm font-medium text-soft">that's me, probably mid-deploy</p>
+			<Mascot />
+		</div>
+	</header>
+
+	<!-- HOW I SHIP -->
+	<section class="reveal relative mt-22.5 md:mt-30">
+		<SectionHead num={1} title="How a product gets out the door" />
+		<p class="mnote">the part I enjoy most: the whole loop, not one slice of it</p>
+		<ol class="grid list-none grid-cols-1 gap-y-8.5 p-0 sm:grid-cols-2 md:grid-cols-4">
+			{
+				pipeline.map((step, i) => (
+					<li
+						class:list={[
+							'relative pr-4.5',
+							i < pipeline.length - 1 && 'md:pipe-link',
+							i === 0 && 'sm:max-md:pipe-link',
+							i === 2 && 'sm:max-md:pipe-link',
+						]}
+						style={accent(step.accent)}
+					>
+						<div class="relative z-[1] grid size-13.5 place-items-center rounded-[50%_46%_52%_48%/48%_52%_46%_50%] border-[2.5px] border-ink bg-card font-hand text-[22px] font-extrabold text-(--c)">
+							{i + 1}
+						</div>
+						<h3 class="mt-4 mb-1.5 text-[26px]">{step.title}</h3>
+						<p class="font-hand text-[16.5px] leading-normal text-soft">{step.text}</p>
+					</li>
+				))
+			}
+		</ol>
+	</section>
+
+	<!-- SHIPPING LOG -->
+	<section class="relative mt-22.5 md:mt-30">
+		<SectionHead num={2} title="Shipping log" note="things that made it to market" />
+		<p class="mnote">stamped = live in production</p>
+		<div class="grid gap-5.5 md:grid-cols-3">
+			{
+				ships.map((s, i) => (
+					<article
+						class:list={[
+							'reveal sketch-radius relative border-2 border-ink bg-card px-5.5 pt-5.5 pb-6 shadow-[5px_6px_0_var(--shadow)]',
+							tilt[i % 3],
+						]}
+						style={accent(s.accent)}
+					>
+						<span class="stamp">{s.stamp}</span>
+						<p class="m-0 font-mono text-xs font-medium tracking-[.08em] text-muted uppercase">{s.where}</p>
+						<h3 class="mt-2 mb-2.5 pr-15 text-[25px]">{s.title}</h3>
+						<p class="m-0 text-[15.5px] text-soft">{s.text}</p>
+						<div class="mt-3.5">
+							{s.tags.map((t) => <span class="chip mr-1.5 mb-2">{t}</span>)}
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</section>
+
+	<!-- NUMBERS -->
+	<section class="reveal relative mt-22.5 md:mt-30">
+		<SectionHead num={3} title="In numbers" />
+		<dl class="m-0 grid grid-cols-2 gap-4 md:grid-cols-5">
+			{
+				numbers.map((n, i) => (
+					<div
+						class:list={[
+							'index-card relative flex flex-col-reverse rounded border-2 border-ink px-4 pt-4 pb-3.5 shadow-[4px_5px_0_var(--shadow)]',
+							i === numbers.length - 1 && 'max-md:col-span-2',
+						]}
+						style={accent(n.accent)}
+					>
+						<dd class="m-0 mt-1.5 text-sm leading-[1.4] text-soft">{n.text}</dd>
+						<dt class="font-hand text-[30px] leading-[1.05] font-extrabold text-(--c)">{n.value}</dt>
+					</div>
+				))
+			}
+		</dl>
+	</section>
+
+	<!-- CHAPTERS -->
+	<section class="reveal relative mt-22.5 md:mt-30">
+		<SectionHead num={4} title="Chapters" note="2015 → now" />
+		<div class="grid gap-6.5 md:grid-cols-3">
+			{
+				chapters.map((c) => (
+					<div class="border-t-3 border-(--c) pt-4" style={accent(c.accent)}>
+						<p class="m-0 font-mono text-[13px] font-medium text-muted">{c.years}</p>
+						<h3 class="mt-1.5 mb-0.5 text-3xl text-(--c)">
+							{c.url ? (
+								<a href={c.url} target="_blank" rel="noopener" class="no-underline hover:underline">
+									{c.company}
+								</a>
+							) : (
+								c.company
+							)}
+						</h3>
+						<p class="mb-3 text-[15.5px] font-semibold">{c.role}</p>
+						<ul class="m-0 list-disc pl-4.5 text-[15.5px] text-soft">
+							{c.points.map((p) => (
+								<li class="mb-1.75">{p}</li>
+							))}
+						</ul>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<!-- HOW I WORK -->
+	<section class="reveal relative mt-22.5 md:mt-30">
+		<SectionHead num={5} title="How I work" />
+		<div class="grid gap-5.5 md:grid-cols-3">
+			{
+				principles.map((p) => (
+					<div class="rounded-[18px] border-2 border-dashed border-ink bg-card p-6" style={accent(p.accent)}>
+						<h3 class="mb-2.5 text-2xl text-(--c)">{p.title}</h3>
+						<p class="m-0 text-[15.5px] text-soft">{p.text}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<!-- TOOLBOX -->
+	<section class="reveal relative mt-22.5 md:mt-30">
+		<SectionHead num={6} title="Toolbox" />
+		<ul class="m-0 flex list-none flex-wrap p-0">
+			{
+				toolbox.map((t) => (
+					<li class="chip mr-1.5 mb-2">{t}</li>
+				))
+			}
+		</ul>
+	</section>
+
+	<!-- CTA -->
+	<aside
+		class="reveal mt-22.5 grid items-center gap-7 rounded-[28px_36px_30px_40px/36px_28px_40px_30px] bg-ink px-6.5 py-9 text-paper md:mt-32.5 md:grid-cols-[1fr_auto] md:px-11 md:py-12"
+	>
+		<div>
+			<h2 class="text-[clamp(30px,4vw,46px)] font-extrabold">Got a product that needs to reach market?</h2>
+			<p class="mt-3 mb-0 text-paper/75">I'm happy to talk about hands-on principal, staff or founding-engineer roles.</p>
+		</div>
+		<a class="sketch-btn justify-self-start border-paper! bg-paper! text-ink! shadow-[3px_3px_0_var(--hl)]!" href={`mailto:${EMAIL}`}
+			>Let's talk →</a
+		>
+	</aside>
+</Base>

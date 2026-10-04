@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+	<style>
+		.bg { fill: #fbf9f4; } .ink { fill: #1c1a17; } .ring { stroke: #d9412b; }
+		@media (prefers-color-scheme: dark) { .bg { fill: #1d2422; } .ink { fill: #f2efe6; } .ring { stroke: #ff8a75; } }
+	</style>
+	<rect class="bg" width="64" height="64" rx="14" />
+	<path class="ring" d="M33 7 C 16 6, 6 16, 7 32 C 8 50, 22 58, 38 56 C 52 54, 59 42, 57 28 C 55 15, 44 7, 26 10" fill="none" stroke-width="3.5" stroke-linecap="round" />
+	<text class="ink" x="32" y="43" text-anchor="middle" font-family="ui-rounded, 'Comic Sans MS', system-ui, sans-serif" font-size="32" font-weight="800">R</text>
+</svg>

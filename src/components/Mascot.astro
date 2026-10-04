@@ -1,0 +1,73 @@
+---
+// "Chai", the cup that hangs out next to the photo. Click it (or hover the photo) to hear from it.
+interface Props {
+	line?: string;
+}
+
+const { line = 'psst… he still ships code most days ☕' } = Astro.props;
+---
+
+<div
+	class="pointer-events-none absolute bottom-37.5 -left-37.5 w-44 translate-y-1.5 scale-95 rounded-[18px_22px_18px_4px] border-2 border-ink bg-card px-3 py-2 font-hand text-sm leading-[1.3] font-semibold opacity-0 transition duration-250 group-hover:translate-0 group-hover:scale-100 group-hover:opacity-100 data-show:translate-0 data-show:scale-100 data-show:opacity-100 max-sm:bottom-30 max-sm:-left-17.5"
+	data-mascot-bubble
+	aria-live="polite"
+>
+	{line}
+</div>
+
+<button
+	type="button"
+	class="absolute bottom-2.5 -left-23 w-37.5 cursor-pointer border-0 bg-transparent p-0 max-sm:-left-14.5 max-sm:w-29.5"
+	aria-label="Chai the mascot. Click to say hi"
+	data-mascot
+>
+	<svg viewBox="0 0 160 160" aria-hidden="true" class="block w-full">
+		<g class="m-steam" stroke="var(--muted)" stroke-width="3" fill="none" stroke-linecap="round">
+			<path d="M62 28 q-6 -8 0 -16"></path>
+			<path d="M80 24 q-6 -8 0 -16"></path>
+			<path d="M98 28 q-6 -8 0 -16"></path>
+		</g>
+		<g class="m-body">
+			<path d="M42 40 L118 40 L108 140 Q80 148 52 140 Z" fill="#fff8ec" stroke="var(--ink)" stroke-width="3.5" stroke-linejoin="round"></path>
+			<path d="M47 72 L113 72 L108 138 Q80 146 52 138 Z" fill="#c8833e" stroke="var(--ink)" stroke-width="3" stroke-linejoin="round"></path>
+			<path d="M45 56 L115 56" stroke="var(--ink)" stroke-width="2" opacity=".35"></path>
+			<ellipse class="m-eye" cx="68" cy="98" rx="5" ry="7" fill="#1c1a17"></ellipse>
+			<ellipse class="m-eye" cx="92" cy="98" rx="5" ry="7" fill="#1c1a17"></ellipse>
+			<circle data-pupil cx="69" cy="96" r="1.8" fill="#fff"></circle>
+			<circle data-pupil cx="93" cy="96" r="1.8" fill="#fff"></circle>
+			<path d="M73 112 q7 7 14 0" stroke="#1c1a17" stroke-width="3" fill="none" stroke-linecap="round"></path>
+			<circle cx="60" cy="110" r="5" fill="#ff8a8a" opacity=".6"></circle>
+			<circle cx="100" cy="110" r="5" fill="#ff8a8a" opacity=".6"></circle>
+			<path class="m-arm" d="M116 88 q16 -6 18 -22" stroke="var(--ink)" stroke-width="4" fill="none" stroke-linecap="round"></path>
+		</g>
+	</svg>
+</button>
+
+<script>
+	const mascot = document.querySelector<HTMLButtonElement>('[data-mascot]');
+	const bubble = document.querySelector<HTMLElement>('[data-mascot-bubble]');
+
+	if (mascot && bubble) {
+		let hideTimer: number | undefined;
+		mascot.addEventListener('click', () => {
+			bubble.toggleAttribute('data-show', true);
+			clearTimeout(hideTimer);
+			hideTimer = window.setTimeout(() => bubble.removeAttribute('data-show'), 2600);
+		});
+
+		// Pupils follow the pointer.
+		const pupils = mascot.querySelectorAll('[data-pupil]');
+		addEventListener(
+			'pointermove',
+			(e) => {
+				const r = mascot.getBoundingClientRect();
+				const dx = e.clientX - (r.left + r.width / 2);
+				const dy = e.clientY - (r.top + r.height / 2);
+				const d = Math.hypot(dx, dy) || 1;
+				const t = `translate(${((dx / d) * 2.2).toFixed(2)},${((dy / d) * 2.2).toFixed(2)})`;
+				pupils.forEach((p) => p.setAttribute('transform', t));
+			},
+			{ passive: true },
+		);
+	}
+</script>
